@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const {Types: mongooseTypes} = mongoose.Schema;
 
+const staticMethods = require('./static-methods');
 const {firstName, lastName, address, email, password, phoneNumber} = require('../../../lib/validation/shared');
 
 const userSchema = new mongoose.Schema({
@@ -36,6 +37,7 @@ const userSchema = new mongoose.Schema({
     minLength: password.minLength,
     maxLength: password.maxLength
   },
+  sessionId: mongooseTypes.String,
   createdAt: {
     type: mongooseTypes.Date,
     default: Date.now()
@@ -45,6 +47,8 @@ const userSchema = new mongoose.Schema({
     default: Date.now()
   }
 });
+
+Object.assign(userSchema.statics, staticMethods);
 
 module.exports = {
   userSchema
