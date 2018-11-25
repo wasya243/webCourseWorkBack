@@ -1,27 +1,40 @@
 const mongoose = require('mongoose');
 const {Types: mongooseTypes} = mongoose.Schema;
 
+const {firstName, lastName, address, email, password, phoneNumber} = require('../../../lib/validation/shared');
+
 const userSchema = new mongoose.Schema({
   firstName: {
     type: mongooseTypes.String,
-    required: true
+    required: true,
+    validate: [firstName.validator, firstName.errorMessage]
   },
   lastName: {
     type: mongooseTypes.String,
-    required: true
+    required: true,
+    validate: [lastName.validator, lastName.errorMessage]
   },
   address: {
     type: mongooseTypes.String,
-    required: true
+    required: true,
+    validate: [address.validator, lastName.errorMessage]
   },
   email: {
     type: mongooseTypes.String,
     required: true,
-    unique: true
+    unique: true,
+    match: [email.regex, email.errorMessage]
+  },
+  phoneNumber: {
+    type: mongooseTypes.String,
+    required: true,
+    match: [phoneNumber.regex, phoneNumber.errorMessage]
   },
   password: {
     type: mongooseTypes.String,
-    required: true
+    required: true,
+    minLength: password.minLength,
+    maxLength: password.maxLength
   },
   createdAt: {
     type: mongooseTypes.Date,
