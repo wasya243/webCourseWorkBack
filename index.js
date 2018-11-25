@@ -7,6 +7,7 @@ require('dotenv').config({path: path.resolve(__dirname, '.env')});
 
 const {PORT} = process.env;
 
+const {errorHandlerMiddleWare} = require('./src/lib/middlewares');
 const routes = require('./src/routes');
 const db = require('./src/db');
 
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/v1', routes);
 app.use((req, res, next) => next({status: 404}));
-// app.use(errorHandlerMiddleWare);
+app.use(errorHandlerMiddleWare);
 
 db.connect()
   .then(() => app.listen(PORT, () => console.log(`Server is listening on ${PORT}`)));
