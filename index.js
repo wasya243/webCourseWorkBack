@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/', (req, res, next) => req.send('Hello World'));
+app.get('/', (req, res, next) => res.send('Hello World'));
 
 db.connect()
   .then(() => app.listen(PORT, () => console.log(`Server is listening on ${PORT}`)));
