@@ -21,7 +21,7 @@ function errorHandlerMiddleWare(error, req, res, next) {
 
   const {status = 500, message, name} = error;
 
-  let response = {};
+  let response;
 
   (name && name === 'ValidationError')
     ? response = {status: 422, message: STATUS_CODES[422]}

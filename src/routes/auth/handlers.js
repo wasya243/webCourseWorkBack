@@ -5,14 +5,12 @@ const {simpleUniqueId} = require('../../lib/helpers');
 
 module.exports = {
   signIn,
-  signOut,
-  accessToken
+  signOut
 };
 
 async function signIn(req, res, next) {
   try {
     const {email, password} = req.body;
-
     const user = await User.findOne({email});
     if (!user || !await crypt.verifyPassword(password, user.password)) {
 
