@@ -1,3 +1,5 @@
+const createError = require('http-errors');
+
 const {crypt, token} = require('../../auth/index');
 const {User} = require('../../db/models/user');
 const {simpleUniqueId} = require('../../lib/helpers');
@@ -52,6 +54,11 @@ async function signUp(req, res, next) {
   try {
     // TODO: add projection to the response object
     const userInfo = req.body;
+    // check availability of email
+    const user = await User.findOne({email: userInfo.email});
+    if (user) {
+      return next(createError(400, `User with ${user.email} already exists`));
+    }
     userInfo.password = await crypt.encryptPassword(userInfo.password);
     const createdUser = await new User(userInfo).save();
     res.send(createdUser);
