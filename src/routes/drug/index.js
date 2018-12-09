@@ -6,7 +6,7 @@ const routes = Router();
 
 // TODO: maybe implement roles for admin & user
 
-routes.get('/drugs', authMiddleWare, handlers.getDrugs);
+routes.get('/drugs', handlers.getDrugs);
 
 routes.get('/drugs/:id', authMiddleWare, handlers.getDrugById);
 

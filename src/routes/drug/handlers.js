@@ -43,9 +43,11 @@ async function updateDrug(req, res, next) {
   }
 }
 
+
+// TODO: remove limit 12 when pagination is ready
 async function getDrugs(req, res, next) {
   try {
-    const listOfDrugs = await Drug.find({});
+    const listOfDrugs = await Drug.find({}).limit(12);
     res.send(listOfDrugs);
   } catch (error) {
     next(error);

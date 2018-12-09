@@ -6,7 +6,7 @@ const routes = Router();
 
 // TODO: maybe implement roles for admin & user
 
-routes.get('/categories', authMiddleWare, handlers.getCategories);
+routes.get('/categories', handlers.getCategories);
 
 routes.get('/categories/:id', authMiddleWare, handlers.getCategoryById);
 
