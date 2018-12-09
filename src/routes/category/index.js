@@ -8,7 +8,7 @@ const routes = Router();
 
 routes.get('/categories', handlers.getCategories);
 
-routes.get('/categories/:id', authMiddleWare, handlers.getCategoryById);
+routes.get('/categories/:id', handlers.getCategoryById);
 
 routes.post('/categories', authMiddleWare, handlers.createCategory);
 
@@ -16,6 +16,6 @@ routes.put('/categories/:id', authMiddleWare, handlers.updateCategory);
 
 routes.delete('/categories/:id', authMiddleWare, handlers.deleteCategory);
 
-routes.get('/categories/:id/drugs', authMiddleWare, handlers.getDrugsByCategoryId);
+routes.get('/categories/:id/drugs', handlers.getDrugsByCategoryId);
 
 module.exports = routes;
