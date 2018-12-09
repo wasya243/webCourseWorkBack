@@ -4,6 +4,8 @@ const {authMiddleWare} = require('../../auth');
 
 const routes = Router();
 
+// TODO: maybe implement roles for admin & user
+
 routes.get('/users', authMiddleWare, handlers.getUsers);
 
 routes.get('/users/:id', authMiddleWare, handlers.getUserById);

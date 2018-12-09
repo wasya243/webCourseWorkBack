@@ -5,7 +5,8 @@ const {simpleUniqueId} = require('../../lib/helpers');
 
 module.exports = {
   signIn,
-  signOut
+  signOut,
+  signUp
 };
 
 async function signIn(req, res, next) {
@@ -44,5 +45,17 @@ async function signOut(req, res, next) {
     res.end();
   } catch (e) {
     next(e);
+  }
+}
+
+async function signUp(req, res, next) {
+  try {
+    // TODO: add projection to the response object
+    const userInfo = req.body;
+    userInfo.password = await crypt.encryptPassword(userInfo.password);
+    const createdUser = await new User(userInfo).save();
+    res.send(createdUser);
+  } catch (error) {
+    next(error);
   }
 }
