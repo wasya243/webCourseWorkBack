@@ -29,6 +29,14 @@ module.exports = {
   password: {
     minLength: 6,
     maxLength: 15
+  },
+  manufacturer: {
+    validator: commonValidator,
+    errorMessage: 'Invalid manufacturer format'
+  },
+  categoryName: {
+    validator: commonValidator,
+    errorMessage: 'Invalid category name format'
   }
 };
 
