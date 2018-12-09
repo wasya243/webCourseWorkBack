@@ -35,8 +35,7 @@ async function updateDrug(req, res, next) {
     const {id} = req.params;
     const drugInfo = req.body;
     const updatedDrug = await Drug.findByIdAndUpdate(id, drugInfo, {
-      new: true,
-      projection: User.defaultProjection
+      new: true
     });
     updatedDrug ? res.send(updatedDrug) : next();
   } catch (error) {
