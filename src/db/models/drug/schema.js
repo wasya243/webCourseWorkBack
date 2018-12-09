@@ -9,6 +9,11 @@ const drugSchema = new mongoose.Schema({
     required: true,
     ref: 'Category'
   },
+  name: {
+    type: mongooseTypes.String,
+    required: true,
+    unique: true
+  },
   manufacturer: {
     type: mongooseTypes.String,
     required: true,

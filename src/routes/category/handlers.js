@@ -1,4 +1,5 @@
 const {Category} = require('../../db/models/category');
+const {Drug} = require('../../db/models/drug');
 
 async function getCategoryById(req, res, next) {
   try {
@@ -52,10 +53,21 @@ async function getCategories(req, res, next) {
   }
 }
 
+async function getDrugsByCategoryId(req, res, next) {
+  try {
+    const {id} = req.params;
+    const listOfDrugs = await Drug.find({category: id});
+    res.send(listOfDrugs);
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   getCategoryById,
   getCategories,
   updateCategory,
   deleteCategory,
-  createCategory
+  createCategory,
+  getDrugsByCategoryId
 };

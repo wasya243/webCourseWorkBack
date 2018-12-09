@@ -16,4 +16,6 @@ routes.put('/categories/:id', authMiddleWare, handlers.updateCategory);
 
 routes.delete('/categories/:id', authMiddleWare, handlers.deleteCategory);
 
+routes.get('/categories/:id/drugs', authMiddleWare, handlers.getDrugsByCategoryId);
+
 module.exports = routes;

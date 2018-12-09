@@ -5,7 +5,7 @@ const {categoryName} = require('../../../lib/validation/shared');
 
 const categorySchema = new mongoose.Schema({
   name: {
-    type: mongooseTypes.ObjectId,
+    type: mongooseTypes.String,
     required: true,
     unique: true,
     validate: [ categoryName.validator, categoryName.errorMessage ]
