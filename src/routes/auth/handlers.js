@@ -32,7 +32,8 @@ async function signIn(req, res, next) {
         firstName: user.firstName,
         lastName: user.lastName,
         address: user.address,
-        phoneNumber: user.phoneNumber
+        phoneNumber: user.phoneNumber,
+        _id: user._id
       }
     });
   } catch (e) {
