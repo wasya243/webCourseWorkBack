@@ -1,6 +1,7 @@
 const {User} = require('../../db/models/user');
 const {Order} = require('../../db/models/order');
 const {crypt} = require('../../auth/index');
+const {processOrderReport} = require('../../lib/helpers');
 
 async function getUserById(req, res, next) {
   try {
@@ -62,8 +63,10 @@ async function getOrdersByUser(req, res, next) {
     const {id} = req.params;
     // aggregate report
     const report = await Order.getOrdersReportByUser(id);
+    // preprocess response before sending
+    const processedResponse = processOrderReport(report);
     // send response
-    res.send(report);
+    res.send(processedResponse);
   } catch (error) {
     next(error);
   }
