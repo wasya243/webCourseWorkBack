@@ -9,7 +9,8 @@ const orderSchema = new mongoose.Schema({
   },
   // TODO: implement comment functionality later
   comment: {
-    type: mongooseTypes.String
+    type: mongooseTypes.String,
+    default: 'Default comment'
   },
   createdAt: {
     type: mongooseTypes.Date,
