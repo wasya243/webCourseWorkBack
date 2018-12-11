@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const {Types: mongooseTypes} = mongoose.Schema;
 
+const staticMethods = require('./static-methods');
+
 const orderSchema = new mongoose.Schema({
   user: {
     type: mongooseTypes.ObjectId,
@@ -21,6 +23,8 @@ const orderSchema = new mongoose.Schema({
     default: Date.now()
   }
 });
+
+Object.assign(orderSchema.statics, staticMethods);
 
 module.exports = {
   orderSchema

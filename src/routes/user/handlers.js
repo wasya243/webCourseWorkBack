@@ -1,4 +1,5 @@
 const {User} = require('../../db/models/user');
+const {Order} = require('../../db/models/order');
 const {crypt} = require('../../auth/index');
 
 async function getUserById(req, res, next) {
@@ -55,10 +56,24 @@ async function getUsers(req, res, next) {
   }
 }
 
+async function getOrdersByUser(req, res, next) {
+  try {
+    // get data to work with
+    const {id} = req.params;
+    // aggregate report
+    const report = await Order.getOrdersReportByUser(id);
+    // send response
+    res.send(report);
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   getUsers,
   getUserById,
   createUser,
   deleteUser,
-  updateUser
+  updateUser,
+  getOrdersByUser
 };

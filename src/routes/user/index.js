@@ -16,4 +16,6 @@ routes.put('/users/:id', authMiddleWare, handlers.updateUser);
 
 routes.delete('/users/:id', authMiddleWare, handlers.deleteUser);
 
+routes.get('/users/:id/orders', authMiddleWare, handlers.getOrdersByUser);
+
 module.exports = routes;
